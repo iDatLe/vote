@@ -7,17 +7,17 @@ export function SignUpAction(signUpData) {
 	}
 }
 
+export function SignUpSubmit(signUpData) {
+	return {
+		type: "SUBMIT_REGISTRATION",
+		id: nextID++,
+		signUpData,
+	}
+}
+
 export function LoginAction(loginData) {
 	return {
 		type: "LOGIN_INPUT",
 		loginData
-	}
-}
-
-export function SignUpSubmit(data) {
-	return {
-		type: "SUBMIT_REGISTRATION",
-		id: nextID++,
-		data,
 	}
 }

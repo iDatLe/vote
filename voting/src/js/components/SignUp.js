@@ -71,8 +71,8 @@ function mapDispatchToProps(dispatch) {
 		input: (signUpData) => {
 			dispatch(SignUpAction(signUpData))
 		},
-		submitInput: (data) => {
-			dispatch(SignUpSubmit(data))
+		submitInput: (signUpData) => {
+			dispatch(SignUpSubmit(signUpData))
 		}
 	}
 }
