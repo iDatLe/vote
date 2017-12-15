@@ -6,12 +6,9 @@ import '../../css/SignUp.css';
 
 
 class SignUp extends Component {
-	// test = (data) => { //arrow function will bind the event handler
-	// 	this.props.input(data.target.value)
-	// }
 
-	changeHandler = (signUpData) => {
-		this.props.input(signUpData)
+	onChange = (event) => {
+		this.props.input(event.target.name, event.target.value)
 	}
 
 	render() {
@@ -30,16 +27,16 @@ class SignUp extends Component {
 							<input 
 								name="text" 
 								placeholder="Enter a Username" 
-								// value={this.props.inputData.text} 
-								onChange={() => this.changeHandler()}
+								value={this.props.inputData.text} 
+								onChange={this.onChange}
 								/>
 
 						<p>Email</p>
 							<input 
 								name="email" 
 								placeholder="Enter an Email" 
-								// value={this.props.inputData.email}
-								onChange={() => this.changeHandler()}
+								value={this.props.inputData.email} 
+								onChange={this.onChange}
 								/>
 
 						<p>Password</p>
@@ -47,10 +44,11 @@ class SignUp extends Component {
 								name="password"
 								type="password" 
 								placeholder="Enter a Password" 
-								onChange={() => this.changeHandler()}  
+								value={this.props.inputData.password}
+								onChange={this.onChange}  
 								/>
 
-						<p><input type="submit" name="submit" /*onClick={this.props.SignUpSubmit}*/ /></p>
+						<p><input type="submit" name="submit" /></p>
 					</div>
 				</form>
 
@@ -68,8 +66,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		input: (signUpData) => {
-			dispatch(SignUpAction(signUpData))
+		input: (name, value) => {
+			dispatch(SignUpAction(name, value))
 		},
 		submitInput: (signUpData) => {
 			dispatch(SignUpSubmit(signUpData))

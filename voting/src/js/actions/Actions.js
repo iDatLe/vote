@@ -1,9 +1,10 @@
 let nextID = 0;
 
-export function SignUpAction(signUpData) {
+export function SignUpAction(name, value) {
 	return {
 		type: "SIGNUP_INPUT",
-		signUpData,
+		name,
+		value,
 	}
 }
 
