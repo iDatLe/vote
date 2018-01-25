@@ -1,10 +1,22 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var passportLocalMongoose = require('passport-local-mongoose');
 
 var signUpSchema = new Schema({
-	text: String,
+	username: String,
 	email: String,
-	password: String
-})
+	password: {type: String, select: false}
+});
 
-module.exports = mongoose.model('SignUp', signUpSchema);
+signUpSchema.methods.validPassword = function(password) {
+	if (this.password === password) {
+		console.log("True");
+		return true;
+	} else {
+		console.log("False");
+		return false;
+	}
+}
+
+signUpSchema.plugin(passportLocalMongoose);
+module.exports = mongoose.model('User', signUpSchema);
