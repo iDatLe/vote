@@ -26,7 +26,6 @@ var User     = require('../models/SignUpSchema');
 // 	}) 
 // })
 
-
 router.post('/', (req, res) => {
 	console.log("You have successfully connected client to register route");
 	console.log(req.body);
@@ -34,12 +33,20 @@ router.post('/', (req, res) => {
 		username: req.body.username,
 		email: req.body.email
 	})
-	User.register(newUser, req.body.password, (err, User) => {
+	User.register(newUser, req.body.password, (err, user) => {
 		if (err) {
 			return console.log("There was an ERROR");
-		} else {
-			return console.log("There was NO ERROR");
-		}
+		} 
+		passport.authenticate('local')(req, res, () => {
+			req.session.save(function(err) {
+				if(err) {
+					console.log(err);
+					return next(err);
+				} else {
+					return console.log("Success registering")
+				}
+			})
+		})
 	})
 })
 

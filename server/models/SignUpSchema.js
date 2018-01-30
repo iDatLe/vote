@@ -5,7 +5,7 @@ var passportLocalMongoose = require('passport-local-mongoose');
 var signUpSchema = new Schema({
 	username: String,
 	email: String,
-	password: {type: String, select: false}
+	password: String
 });
 
 signUpSchema.methods.validPassword = function(password) {
