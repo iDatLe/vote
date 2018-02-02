@@ -5,12 +5,13 @@ var loginUser = require('../models/LoginSchema');
 
 //============ req.session.save method
 router.post('/', passport.authenticate('local'), (req, res, next) => {
-    req.session.save((err) => {
+    req.session.save((err, user) => {
         if (err) {
         	console.log(err)
             return next(err);
         }
-        console.log("You logged in")
+        console.log("You have logged in.");
+        console.log(req.user);
         res.json({redirectURI: "/dashboard"}) //required for .then in client to redirect
     });
 });

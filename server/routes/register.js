@@ -35,7 +35,8 @@ router.post('/', (req, res) => {
 	})
 	User.register(newUser, req.body.password, (err, user) => {
 		if (err) {
-			res.sendStatus(JSON.stringify(500));
+			console.log(err)
+			res.sendStatus(500);
 			return console.log("There was an ERROR");
 		} 
 		passport.authenticate('local')(req, res, function() {
@@ -45,8 +46,8 @@ router.post('/', (req, res) => {
 					res.sendStatus(500);
 					return next(err);
 				} else {
-					res.sendStatus(JSON.stringify(200));
-					return console.log("Success registering")
+					res.sendStatus(200);
+					return console.log("Registering successful and logged in.")
 				}
 			})
 		})
