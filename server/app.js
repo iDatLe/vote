@@ -7,6 +7,7 @@ var express       = require('express'),
 /*--------ROUTES--------*/
 var registerRoutes = require('./routes/register')
 var loginRoutes    = require('./routes/login')
+var logoutRoutes   = require('./routes/logout')
 var path           = require('path')
 
 /*---------MODELS-------*/
@@ -58,6 +59,7 @@ passport.deserializeUser(User.deserializeUser());
 /*---------ROUTES--------*/
 app.use('/api/register', registerRoutes);
 app.use('/api/login', loginRoutes);
+app.use('/api/logout', logoutRoutes);
 
 /*---------CONNECTS SERVER AND CLIENT---------*/
 app.use(express.static(path.join(__dirname, '../client/build')));

@@ -2,7 +2,7 @@ var express   = require("express");
 var router    = express.Router();
 var passport  = require("passport");
 
-router.post('/logout', function(req, res) {
+router.post('/', function(req, res) {
 	req.logOut();
 	req.session.destroy(function(err) {
 		if(err) {
