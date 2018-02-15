@@ -11,7 +11,6 @@ router.post('/', passport.authenticate('local'), (req, res, next) => {
             return next(err);
         }
         console.log("You have logged in.");
-        console.log(req.user);
         res.json({redirectURI: "/dashboard"}) //required for .then in client to redirect
     });
 });

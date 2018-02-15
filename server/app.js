@@ -8,11 +8,13 @@ var express       = require('express'),
 var registerRoutes = require('./routes/register')
 var loginRoutes    = require('./routes/login')
 var logoutRoutes   = require('./routes/logout')
+var votingRoute    = require('./routes/votingPoll')
 var path           = require('path')
 
 /*---------MODELS-------*/
 var User = require('./models/SignUpSchema');
-var loginUser = require ('./models/LoginSchema')
+var loginUser = require ('./models/LoginSchema');
+var Vote = require('./models/votingPollSchema');
 
 var app = express();
 
@@ -29,7 +31,13 @@ app.use(bodyParser.json());
 app.use(require("express-session")({
 	secret: "Smalls is still the cutest bunny",
 	resave: false,
-	saveUninitialized: false
+	saveUninitialized: false,
+	signed: true,
+	cookie: { 
+		secure: false, 
+		maxAge: 60000,
+		httpOnly: false
+	}
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -60,6 +68,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use('/api/register', registerRoutes);
 app.use('/api/login', loginRoutes);
 app.use('/api/logout', logoutRoutes);
+app.use('/api/vote', votingRoute);
 
 /*---------CONNECTS SERVER AND CLIENT---------*/
 app.use(express.static(path.join(__dirname, '../client/build')));
