@@ -11,8 +11,7 @@ router.post('/', function(req, res) {
 		if(err) {
 			console.log(err);
 		} else {
-			console.log(req.body.title)
-			console.log(req.body.options)
+			console.log(req.body)
 			console.log("You successfully posted")
 		}
 	})
