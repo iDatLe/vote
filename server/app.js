@@ -1,8 +1,8 @@
-var express       = require('express'),
-	mongoose      = require('mongoose'),
-	bodyParser    = require('body-parser'),
-	passport      = require('passport'),
-	LocalStrategy = require("passport-local").Strategy
+var express        = require('express'),
+	mongoose       = require('mongoose'),
+	bodyParser     = require('body-parser'),
+	passport       = require('passport'),
+	LocalStrategy  = require("passport-local").Strategy
 
 /*--------ROUTES--------*/
 var registerRoutes = require('./routes/register')
@@ -12,14 +12,14 @@ var votingRoute    = require('./routes/votingPoll')
 var path           = require('path')
 
 /*---------MODELS-------*/
-var User = require('./models/SignUpSchema');
-var loginUser = require ('./models/LoginSchema');
-var Vote = require('./models/votingPollSchema');
+var User           = require('./models/SignUpSchema');
+var loginUser      = require ('./models/LoginSchema');
+var Vote           = require('./models/votingPollSchema');
 
-var app = express();
+var app            = express();
 
 /*---------MONGOOSE---------*/
-mongoose.Promise = global.Promise;
+mongoose.Promise   = global.Promise;
 mongoose.connect('mongodb://iDatLe:souperprivate1@ds049854.mlab.com:49854/votingapp', {useMongoClient: true});
 
 /*---------BODY PARSER---------*/
