@@ -20,13 +20,23 @@ router.post('/', function(req, res) {
 
 
 //GET ALL POLLS FOR POLL LANDING PAGE
-router.get('/', function(req, res) {
+
+router.get('/', function(req, res) {	 
 	Vote.find({}, function(err, allVotes) {
+		
+		const votingDataArray = []
+		for (i = 0; i<allVotes.length; i++) {
+			const votingDataObject = {}
+			votingDataObject.id = allVotes[i]._id;
+			votingDataObject.title = allVotes[i].title;
+			votingDataArray.push(votingDataObject);
+		}
+
 		if(err){
 			console.log(err);
 		} else {
-			console.log(allVotes[0]._id);
-			res.json(allVotes);
+			console.log(votingDataArray)
+			res.json(votingDataArray);
 		}
 	})
 })
