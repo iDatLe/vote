@@ -16,7 +16,7 @@ router.post('/', function(req, res) {
 			console.log("You successfully posted")
 		}
 	})
-})
+});
 
 
 //GET ALL POLLS FOR POLL LANDING PAGE
@@ -35,20 +35,24 @@ router.get('/', function(req, res) {
 		if(err){
 			console.log(err);
 		} else {
-			console.log(votingDataArray)
 			res.json(votingDataArray);
 		}
 	})
-})
+});
 
-	// Vote.findById(req.params.id).exec(function(err, allVotes) {
-	// 	if(err) {
-	// 		console.log(err);
-	// 	} else {
-	// 		console.log("You are in the get request")
-	// 		// console.log(allVotes);
-	// 		res.sendStatus(200);
-	// 	}
-	// })
+//GET POLL FOR SPECIFIC PAGE
+router.get('/:id', function(req, res) {
+	Vote.findById(req.params.id).exec(function(err, allVotes) {
+		console.log(allVotes.options)
+		if(err) {
+			console.log(err);
+			console.log("There was an error retrieving that poll")
+		} else {
+			res.json(allVotes.options)
+			console.log("We found that poll")
+		}
+	})
+});
+
 
 module.exports = router;
