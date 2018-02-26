@@ -6,8 +6,9 @@ var Vote = require('../models/votingPollSchema');
 router.post('/', function(req, res) {
 	var title = req.body.title
 	var options = req.body.options
+	var poll = req.body.poll
 
-	var newVote = {title: title, options: options}
+	var newVote = {title: title, options: options, poll: poll}
 	Vote.create(newVote, function(err, newlyCreated){
 		if(err) {
 			console.log(err);
@@ -23,7 +24,6 @@ router.post('/', function(req, res) {
 
 router.get('/', function(req, res) {	 
 	Vote.find({}, function(err, allVotes) {
-		
 		const votingDataArray = []
 		for (i = 0; i<allVotes.length; i++) {
 			const votingDataObject = {}
@@ -35,6 +35,7 @@ router.get('/', function(req, res) {
 		if(err){
 			console.log(err);
 		} else {
+			console.log(votingDataArray)
 			res.json(votingDataArray);
 		}
 	})
@@ -43,16 +44,26 @@ router.get('/', function(req, res) {
 //GET POLL FOR SPECIFIC PAGE
 router.get('/:id', function(req, res) {
 	Vote.findById(req.params.id).exec(function(err, allVotes) {
-		console.log(allVotes.options)
+		console.log(allVotes)
 		if(err) {
 			console.log(err);
-			console.log("There was an error retrieving that poll")
 		} else {
 			res.json(allVotes.options)
-			console.log("We found that poll")
 		}
 	})
 });
+
+//PUT REQUEST TO EDIT POLL NUMBERS
+router.put('/:id', function(req, res) {
+	console.log(req)
+	Vote.findByIdAndUpdate(req.params.id, req.body, function(err, allVotes) {
+		if(err){
+			console.log("Error buddy")
+		} else {
+			console.log("Updated fine")
+		}
+	})
+})
 
 
 module.exports = router;

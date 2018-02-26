@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var votingPollSchema = new Schema({
 	title: String,
-	options: [String]
+	options: [String],
 }, {strict: false} )
 
 module.exports = mongoose.model('Vote', votingPollSchema)
