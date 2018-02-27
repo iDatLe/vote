@@ -35,7 +35,6 @@ router.get('/', function(req, res) {
 		if(err){
 			console.log(err);
 		} else {
-			console.log(votingDataArray)
 			res.json(votingDataArray);
 		}
 	})
@@ -44,19 +43,27 @@ router.get('/', function(req, res) {
 //GET POLL FOR SPECIFIC PAGE
 router.get('/:id', function(req, res) {
 	Vote.findById(req.params.id).exec(function(err, allVotes) {
+		const votingDataArray = []
 		console.log(allVotes)
+		for(i = 0; i <allVotes.options.length; i++) {
+			const votingDataObject = {}
+			votingDataObject.options = allVotes.options[i];
+			votingDataObject.poll = 0;
+			votingDataArray.push(votingDataObject);
+		}
+		console.log(votingDataArray)
 		if(err) {
 			console.log(err);
 		} else {
-			res.json(allVotes.options)
+			res.json(votingDataArray)
 		}
 	})
 });
 
 //PUT REQUEST TO EDIT POLL NUMBERS
 router.put('/:id', function(req, res) {
-	console.log(req)
 	Vote.findByIdAndUpdate(req.params.id, req.body, function(err, allVotes) {
+		console.log(req.body)
 		if(err){
 			console.log("Error buddy")
 		} else {
