@@ -41,6 +41,7 @@ router.get('/', function(req, res) {
 //GET POLL FOR SPECIFIC PAGE
 router.get('/:id', function(req, res) {
 	Vote.findById(req.params.id).exec(function(err, allVotes) {
+
 		const votingDataArray = []
 		for (i = 0; i<allVotes.options.length; i++) {
 			votingDataArray.push(allVotes.options[i]);
