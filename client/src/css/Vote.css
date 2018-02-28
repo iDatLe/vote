@@ -1,0 +1,31 @@
+.jumbotronVote {
+	padding-top: 20px;
+	height: 170px;
+	background-color: #0e98d8;
+}
+
+.jumbotronVoteLanding {
+	padding-top: 20px;
+	height: 120px;
+	background-color: #0e98d8;
+}
+
+h2 {
+	color: black;
+}
+
+select {
+  margin-bottom: 1em;
+  padding: .25em;
+  border: 0;
+  border-bottom: 2px solid currentcolor; 
+  font-weight: bold;
+  letter-spacing: .15em;
+  border-radius: 0;
+  margin-right: 20px;
+  height: 28px;
+  &:focus, &:active {
+    outline: 0;
+    border-bottom-color: red;
+  }
+}
