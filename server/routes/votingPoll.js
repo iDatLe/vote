@@ -41,24 +41,26 @@ router.get('/', function(req, res) {
 //GET POLL FOR SPECIFIC PAGE
 router.get('/:id', function(req, res) {
 	Vote.findById(req.params.id).exec(function(err, allVotes) {
-		// console.log(allVotes.options)
-		console.log("AYASIUH", allVotes.options)
+		const votingDataArray = []
+		for (i = 0; i<allVotes.options.length; i++) {
+			votingDataArray.push(allVotes.options[i]);
+		}
 		if(err) {
 			console.log(err);
 		} else {
-			res.json(allVotes.options)
+			res.json(votingDataArray)
 		}
 	})
 });
 
 //PUT REQUEST TO EDIT POLL NUMBERS
 router.put('/:id', function(req, res) {
-	Vote.findByIdAndUpdate(req.params.id, req.body, function(err, allVotes) {
+	Vote.findByIdAndUpdate(req.params.id, { $set: {options: req.body}}, {new: true}, function(err, allVotes) {
 		console.log("req.body", req.body)
 		if(err){
 			console.log("Error buddy")
 		} else {
-			console.log("Updated fine")
+			res.sendStatus(200)
 		}
 	})
 })
