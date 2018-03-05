@@ -1,6 +1,7 @@
 const initialState = {
 	title: '',
-	options: ''
+	options: '',
+	redirect: false
 }
 
 function DashboardReducer (state=initialState, action) {
@@ -9,6 +10,16 @@ function DashboardReducer (state=initialState, action) {
 			return {
 				...state,
 				[action.name]: (action.value)
+			}
+		case "DASHBOARD_REDIRECT":
+			return {
+				...state,
+				redirect: true
+			}
+		case "DASHBOARD_REDIRECT_FALSE":
+			return {
+				...state,
+				redirect: false
 			}
 		default:
 			return state

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router';
 import { DashboardAction } from '../actions/Actions.js';
 import { DashboardPost } from '../actions/Actions.js';
+import { push } from 'react-router'
 import '../../css/Dashboard.css';
 
 class Dashboard extends Component {
@@ -13,12 +15,14 @@ class Dashboard extends Component {
 			const splitOptions = options.split(/\n/g)
 
 			const optionsArr = []
+			// eslint-disable-next-line
 			splitOptions.map((option, i) => {
 				const optionsObj = {}
 				optionsObj.options = option
 				optionsObj.poll = 0
 				optionsArr.push(optionsObj)
 			})	
+			this.props.history.push("/vote")
 			const dataArray = {...data, options: optionsArr}
 			this.props.submit(dataArray)
 		}
@@ -28,7 +32,6 @@ class Dashboard extends Component {
 		}
 
 	render() {
-
 		return(
 			<div className="container">
 				<div className="jumbotronSignUp">
@@ -53,7 +56,6 @@ class Dashboard extends Component {
 								placeholder="What are your options?"
 								onChange={this.onChange} />
 							</div>
-						
 							<input type="submit" name="submit" />
 						</form>
 				</div>

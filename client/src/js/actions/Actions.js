@@ -38,7 +38,7 @@ export function SignUpSubmit(data) {
 		})
 		.then((res) => {
 			if(res.status === 200) {
-				dispatch({type: 'SHOW_REGISTER_FALSE'})
+				dispatch({type: 'SHOW_LOGIN_FALSE'})
 			} else {
 				dispatch({type: 'REGISTER_FAIL'})
 				setTimeout(() => {
@@ -78,7 +78,7 @@ export function DashboardPost(optionsArray) {
 		})
 		.then((res) => {
 			if(res.status === 200) {
-				console.log("You done did it bruh")
+				console.log("Successfully posted")
 			} else {
 				console.log("Error bruh")
 			}

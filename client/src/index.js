@@ -23,9 +23,10 @@ const store = createStore(
 	) 
  );
 
+
 store.subscribe(() => {
-	saveState(store.getState());
-}) //persists user after page refresh
+		saveState(store.getState());
+	}) //persists user after page refresh
 
 ReactDOM.render((
 	<Provider store={store}>

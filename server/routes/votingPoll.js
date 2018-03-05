@@ -15,6 +15,7 @@ router.post('/', function(req, res) {
 		} else {
 			console.log(req.body)
 			console.log("You successfully posted")
+			res.sendStatus(200)
 		}
 	})
 });

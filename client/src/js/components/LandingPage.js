@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { Redirect } from 'react-router'
+import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import { LogOut } from '../actions/Actions.js';
 import     			Home  from './Home';
