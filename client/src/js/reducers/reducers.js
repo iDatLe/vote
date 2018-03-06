@@ -15,11 +15,11 @@ const appReducer = combineReducers({
 	VotingLandingReducer
 });
 
-const rootReducer = (state, action) => {
+const rootReducers = (state, action) => {
 	if (action.type === 'LOGOUT') {
 		state = undefined
 	}
 	return appReducer(state, action)
 }
 
-export default rootReducer
+export default rootReducers

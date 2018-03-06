@@ -12,12 +12,6 @@ class VoteLanding extends Component {
 		this.props.mount;
 	}
 
-	// handleClick = (x, y) => {
-	// 	this.props.getOptions(x, null)
-	// 	this.props.getOptions(x, y)
-
-	// }
-
 	render() {
 		const titleArray = this.props.landingData.data
 		const Result = titleArray.map((titles, i) => {

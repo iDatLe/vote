@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { PlaceVote, SelectOption } from '../actions/Actions.js';
-import { Bar } from 'react-chartjs-2'
+import { Bar } from 'react-chartjs-2';
 import '../../css/Vote.css';
 
 class VoteTest extends Component {
@@ -74,6 +74,7 @@ class VoteTest extends Component {
 						</div>
 						<form onSubmit={this.handleSubmit}>
 							<select onChange={this.handleChange}>
+								<option>Please select an answer </option>
 								{Result}
 							</select>
 								<input type='submit' name='submit'/>
@@ -95,6 +96,7 @@ class VoteTest extends Component {
 const mapStateToProps = state => {
 	return {
 		data: state.VoteTestReducers,
+		logout: state.LoginReducer
 	}
 }
 

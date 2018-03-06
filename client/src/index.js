@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Router } from 'react-router-dom'; //react router stuff
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
-import reducers from './js/reducers/reducers.js';
+import rootReducers from './js/reducers/reducers.js';
 import thunk from 'redux-thunk';
 import registerServiceWorker from './registerServiceWorker';
 import createBrowserHistory from 'history/createBrowserHistory';
@@ -15,7 +15,7 @@ const history = createBrowserHistory();
 const persistedState = loadState();
 
 const store = createStore(
-	reducers,
+	rootReducers,
 	persistedState,
 	compose(
 	applyMiddleware(thunk),

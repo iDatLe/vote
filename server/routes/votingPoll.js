@@ -58,7 +58,7 @@ router.get('/:id', function(req, res) {
 //PUT REQUEST TO EDIT POLL NUMBERS
 router.put('/:id', function(req, res) {
 	Vote.findByIdAndUpdate(req.params.id, { $set: {options: req.body}}, {new: true}, function(err, allVotes) {
-		console.log("req.body", req.body)
+		console.log("req", req.isAuthenticated())
 		if(err){
 			console.log("Error buddy")
 		} else {
@@ -66,6 +66,14 @@ router.put('/:id', function(req, res) {
 		}
 	})
 })
+
+function isAuthenticated(req, res, next) {
+	if(req.isAuthenticated()) {
+		next() 
+	} else {
+		console.log('Error in authenticating')
+	}
+}
 
 
 module.exports = router;
