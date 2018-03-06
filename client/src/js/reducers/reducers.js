@@ -6,7 +6,7 @@ import VoteTestReducers from './VoteTestReducers';
 import GetPollReducer from './GetPollReducer';
 import VotingLandingReducer from './VotingLandingReducer';
 
-export default combineReducers({
+const appReducer = combineReducers({
 	SignUpReducer,
 	LoginReducer,
 	DashboardReducer,
@@ -14,3 +14,12 @@ export default combineReducers({
 	GetPollReducer,
 	VotingLandingReducer
 });
+
+const rootReducer = (state, action) => {
+	if (action.type === 'LOGOUT') {
+		state = undefined
+	}
+	return appReducer(state, action)
+}
+
+export default rootReducer

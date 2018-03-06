@@ -1,14 +1,14 @@
-import React                                     from 'react';
-import ReactDOM                              from 'react-dom';
-import { Router }              from 'react-router-dom'; //react router stuff
-import { Provider }                        from 'react-redux';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Router } from 'react-router-dom'; //react router stuff
+import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
-import reducers              from './js/reducers/reducers.js';
-import thunk                               from 'redux-thunk';
-import registerServiceWorker   from './registerServiceWorker';
+import reducers from './js/reducers/reducers.js';
+import thunk from 'redux-thunk';
+import registerServiceWorker from './registerServiceWorker';
 import createBrowserHistory from 'history/createBrowserHistory';
 import './css/index.css';
-import App                                       from './App';
+import App from './App';
 import { loadState, saveState } from './localStorage.js';
 
 const history = createBrowserHistory();

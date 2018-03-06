@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router';
 import { DashboardAction } from '../actions/Actions.js';
 import { DashboardPost } from '../actions/Actions.js';
-import { push } from 'react-router'
 import '../../css/Dashboard.css';
 
 class Dashboard extends Component {
