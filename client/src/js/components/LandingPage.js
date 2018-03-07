@@ -21,58 +21,81 @@ class Landing extends Component {
 	}
 
 	render() {
-		const arrayList = [
-			{link: '/', name: 'Home', className:'leftside'},
-			{link: '/register/', name: 'Sign Up', className:'rightSide register'},
-			{link: '/login/', name: 'Login', className: 'rightSide'},
-			{link: '/dashboard/', name: 'Dashboard', className: 'rightSide'},
+		const linkLogin = [
+			{
+				link: '/',           
+				name: 'Home',      
+				className: 'leftSide', 
+			},
+			{
+				link: '/dashboard/', 
+				name: 'Dashboard', 
+				className: 'leftSide', 
+			},
+			{
+				link: '/vote/',      
+				name: 'Vote',      
+				className: 'rightSide', 
+			},
+			{
+				link: '/login/',     
+				name: 'Login',     
+				className: 'rightSide', 
+			},
+			{
+				link: '/register/',  
+				name: 'Sign Up',   
+				className: 'rightSide register', 
+			}
 		]
 
-		if(this.props.showLogin.showLogin) {		
+		const linkMap = linkLogin.map(({link, name, className}, i) => {
+			return (
+				<Link key={i} to={link} className={className}>{name} </Link>
+			)})
+
+		const linkMapTwo = linkLogin.slice(0, 3).map(({link, name, className}, i) => {
+			return (
+				<Link key={i} to={link} className={className}>{name} </Link>
+			)})
+
+		if(this.props.showLogin.showLogin) { //Logged out	
 			return (
 					<Router>
 						<div className="container">
 							<div className="navbar">
-								<Link to="/" className="leftSide">Home </Link>
-								<Link to="/register/" className="rightSide register">Sign Up </Link>
-								<Link to="/login/" className="rightSide">Login </Link>
-								<Link to="/dashboard/" className="rightSide">Dashboard </Link>
-								<Link to="/vote/" className="rightSide">Vote </Link>
+								{linkMap}
 							</div>
 							<Route exact path="/" component={Home} />
-							<Route exact path="/login" component={Login} />
-							<Route exact path="/register" component={SignUp} />
+							<Route path="/login" component={Login} />
+							<Route path="/register" component={SignUp} />
 							<Route path="/vote" component={VoteLanding} />
 							<Route path="/votetest" component={VoteTest} />
 							<Route path="/dashboard"  render={() => (
 								this.props.showLogin.showLogin ? (<Redirect to='/login' />) : (<Dashboard />) 
 								)} />
 						</div>
-					</Router>
+				    </Router>
 				)
-			} else {
+			} else { //Logged in
 				return (
 					<Router>
 						<div className="container">
 							<div className="navbar">
-								<Link to="/" className="leftSide">Home </Link>
-								<Link to="/dashboard" className="rightSide">Dashboard </Link>
-								<Link to="/vote/" className="rightSide">Vote </Link>
+								{linkMapTwo}
 								<a className="rightSide" onClick={this.handleClick}>Logout </a>
 							</div>
 
 							<Route exact path="/" component={Home} />
-							<Route path="/login"  render={() => (
-								!this.props.showLogin.showLogin ? (<Redirect to='/dashboard' />) : (<Login />) 
-								)} />
-
-							<Route path="/register"  render={() => (
-								!this.props.showLogin.showLogin ? (<Redirect to='/dashboard' />) : (<SignUp />) 
-								)} />
-
 							<Route path="/vote" component={VoteLanding} />
 							<Route path="/votetest" component={VoteTest} />
 							<Route path="/dashboard" component={Dashboard} />
+							<Route path="/login"  render={() => (
+								!this.props.showLogin.showLogin ? (<Redirect to='/dashboard' />) : (<Login />) 
+								)} />
+							<Route path="/register"  render={() => (
+								!this.props.showLogin.showLogin ? (<Redirect to='/dashboard' />) : (<SignUp />) 
+								)} />
 						</div>
 					</Router>
 				)

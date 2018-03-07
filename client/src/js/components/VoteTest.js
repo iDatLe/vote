@@ -27,7 +27,6 @@ class VoteTest extends Component {
 		const arrLabel = []
 		const arrPoll = []
 
-
 		const Result = optionsArray.map((options, i) => {
 			arrLabel.push(options.options)
 			arrPoll.push(options.poll)
